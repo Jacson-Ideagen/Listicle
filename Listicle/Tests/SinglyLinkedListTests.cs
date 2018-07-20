@@ -188,6 +188,8 @@ namespace Listicle.Tests
             DoTest(AddTest());
             DoTest(FindTest());
             DoTest(ValuesTest());
+            Console.WriteLine("Press enter to return to main menu");
+            Console.ReadLine();
         }
     }
 }

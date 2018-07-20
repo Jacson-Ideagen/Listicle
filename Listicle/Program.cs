@@ -15,6 +15,12 @@ namespace Listicle
         {
             while (running)
             {
+                Console.WriteLine("Please enter test you would like to run");
+                Console.WriteLine("you can enter the first letter of each word or the whole thing...");
+                Console.WriteLine();
+                Console.WriteLine("Singly Linked List Tests");
+                Console.WriteLine("Doubly Linked List Tests");
+                Console.WriteLine();
                 var comm = TakeCommand();
 
                 Console.Clear();
@@ -22,14 +28,33 @@ namespace Listicle
         }
         public string TakeCommand()
         {
-            var comm = Console.ReadLine();
+            var comm = Console.ReadLine().ToLower();
+            Console.WriteLine();
             switch (comm)
             {
-                case "SingleLinkedListTests":
+                case "singlylinkedlisttests":
+                    singlyTest();
+                    break;
+                case "singly linked list tests":
                     singlyTest();
                     break;
                 case "sllt":
                     singlyTest();
+                    break;
+                case "s":
+                    singlyTest();
+                    break;
+                case "doublylinkedlisttests":
+                    doublyTest();
+                    break;
+                case "doubly linked list tests":
+                    doublyTest();
+                    break;
+                case "dllt":
+                    doublyTest();
+                    break;
+                case "d":
+                    doublyTest();
                     break;
                 case "x":
                     running = false;
@@ -43,7 +68,11 @@ namespace Listicle
         {
             var slt = new SinglyLinkedListTests();
             slt.RunAllTests();
-            Console.ReadKey();
+        }
+        public void doublyTest()
+        {
+            var dlt = new DoublyLinkedListTests();
+            dlt.RunAllTests();
         }
     }
 }
