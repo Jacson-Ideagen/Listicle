@@ -11,7 +11,7 @@ namespace Listicle.Interfaces
         IDoublyLinkedList<T> Next { get; set; }
         IDoublyLinkedList<T> Previous { get; set; }
 
-        void Add(T item);
+        void Add(T item, IDoublyLinkedList<T> caller = null);
 
         void Delete(IDoublyLinkedList<T> Node);
 
