@@ -38,30 +38,74 @@ namespace Listicle.Lists
             }
         }
 
-        public void Delete(ISinglyLinkedList<T> Node)
+        public void Delete(ISinglyLinkedList<T> NodeItem)
         {
-            if (Next == Node)
+            if (Node != null)
             {
-                Next = Next.Next;
+                if (Equals(NodeItem))
+                {
+                    if (!(Next is null))
+                    {
+                        Node = Next.Node;
+                        Next = Next.Next;
+                    }
+                    else
+                    {
+                        Node = new SinglyLinkedList<T>().Node;
+                    }
+                    return;
+                }
+            }
+            if (Next.Node != null)
+            {
+                if (Next == NodeItem)
+                {
+                    Next = Next.Next;
+                }
+                else
+                {
+                    Next.Delete(NodeItem);
+                }
             }
         }
 
         public ISinglyLinkedList<T> Find(T item)
         {
-            if (Next.Node.Equals(item))
+            if(Node != null)
             {
-                return Next;
+                if(Node.Equals(item))
+                {
+                    return this;
+                }
+            }
+
+            if (Next.Node != null)
+            {
+
+                if (Next.Node.Equals(item))
+                {
+                    return Next;
+                }
+                else
+                {
+                    return Next.Find(item);
+                }
             }
             else
             {
-                return Next.Find(item);
+                return null;
             }
         }
 
         public T[] Values()
         {
-            var vals = new List<T>() { Node };
-            if (!(Next is null))
+            var vals = new List<T>();
+            if(Node != null)
+            {
+                vals.Add(Node);
+            }
+
+            if (!(Next is null) && Next.Node != null)
             {
                 vals.AddRange(new List<T>(Next.Values()));
             }

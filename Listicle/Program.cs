@@ -13,11 +13,11 @@ namespace Listicle
         }
         public void Run()
         {
-            var slt = new SinglyLinkedListTests();
             while (running)
             {
-                Console.WriteLine(slt.AddTest());
                 var comm = TakeCommand();
+
+                Console.Clear();
             }
         }
         public string TakeCommand()
@@ -25,6 +25,12 @@ namespace Listicle
             var comm = Console.ReadLine();
             switch (comm)
             {
+                case "SingleLinkedListTests":
+                    singlyTest();
+                    break;
+                case "sllt":
+                    singlyTest();
+                    break;
                 case "x":
                     running = false;
                     break;
@@ -32,6 +38,12 @@ namespace Listicle
                     return comm;
             }
             return comm;
+        }
+        public void singlyTest()
+        {
+            var slt = new SinglyLinkedListTests();
+            slt.RunAllTests();
+            Console.ReadKey();
         }
     }
 }
